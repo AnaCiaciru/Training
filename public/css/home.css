@@ -1,0 +1,19 @@
+.animate {
+    max-width: 60%;
+    animation: spin-in 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 1;
+    word-wrap: break-word;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.animate:hover {
+    transform: scale(1.2);
+}
+
+@keyframes spin-in {
+    from {
+        transform: scale(3) rotate(2000deg);
+    }
+    to {
+        transform: scale(1) rotate(0deg);
+    }
+}

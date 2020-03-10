@@ -1,0 +1,26 @@
+<% include partials/header %>
+<br><br>
+<div class="card md-8" id="cont" style="margin-left: 10vw;">
+    <div class="card my-8">
+        <div >
+            <div >
+                <h2 style="font-family: 'Glyphicons Halflings'; font-size: 5vw;"><%= post.titlu %></h2>
+                 <p id="description" class="card-text" style="font-size: 2vw; margin-right: 4vw;" ><%=  post.descriere%></p>
+            </div>
+            <img  id="output" src="<%= post.imagine %>" style="width: 80vw; height: 40vw; border-radius: 2vw;">
+
+            <div >
+                <p> Posted on <%= post.date%> </p>
+           </div>
+        </div>
+    </div>
+</div>
+
+<br><br>
+
+<% include partials/footer %>
+
+
+
+
+

@@ -1,0 +1,171 @@
+<% include partials/header %>
+
+<br><br>
+
+<div class="header text-center">
+    <h1><strong>Contacteaza-ne!</strong></h1>
+    <div class="header-underline"></div>
+    <p class="text-muted ">Trimite-ne un mesaj ca sa planificam o consultanta impreuna!</p>
+</div>
+
+<br><br>
+
+<div class="container col-sm-4 col-md-7 col-lg-4 mt-5" style="width: 80vw; margin-left: 10vw; margin-right: 8vw;">
+    <div class="card">
+        <h3 class="card-header" id="monthAndYear"></h3>
+        <table class="table table-bordered table-responsive-sm" id="calendar">
+            <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+            </thead>
+
+            <tbody id="calendar-body">
+
+            </tbody>
+        </table>
+
+        <div class="form-inline">
+
+            <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+
+            <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
+        </div>
+        <br/>
+        <form class="form-inline">
+            <label class="lead mr-2 ml-2" for="month"></label>
+            <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+                <option value=0>Jan</option>
+                <option value=1>Feb</option>
+                <option value=2>Mar</option>
+                <option value=3>Apr</option>
+                <option value=4>May</option>
+                <option value=5>Jun</option>
+                <option value=6>Jul</option>
+                <option value=7>Aug</option>
+                <option value=8>Sep</option>
+                <option value=9>Oct</option>
+                <option value=10>Nov</option>
+                <option value=11>Dec</option>
+            </select>
+
+
+            <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+               <%
+                    for(var year = 1990; year <= 2030; year++){
+               %>
+                <option value= <%=year%> >  <%=year%>  </option>
+
+                <% } %>
+            </select></form>
+    </div>
+</div>
+<br><br><br><br>
+<!--contact  section-->
+<section id="contact" style="width: 80vw; margin-left: 10vw; margin-right: 10vw;">
+    <div class="container-fluid">
+        <!--header-->
+
+        <!-- end of header -->
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <!-- formular -->
+                <form  action="/newRequest" method="post"  style="margin-top: 5vw;">
+
+                    <div class="form-row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" name="firstname" id="firstname" class="form-control input-lg" placeholder="First Name">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" name="lastname" id="lastname" class="form-control input-lg" placeholder="Last Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="lead mr-2 ml-2" for="hstart"></label>
+                                <select class="form-control input-lg" name="hstart" id="hstart">
+                                    <option value="08:00">08:00</option>
+                                    <option value="09:00">09:00</option>
+                                    <option value="10:00">10:00</option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="14:00">14:00</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="lead mr-2 ml-2" for="hfinal"></label>
+                                <select class="form-control input-lg" name="hfinal" id="hfinal">
+                                    <option value="15:00">15:00</option>
+                                    <option value="16:00">16:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="21:00">21:00</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="tel" name="phone" id="phone" class="form-control input-lg" placeholder="Phone Number">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="text" name="day" id="day" class="form-control input-lg" placeholder="12.01.2020">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div col-sm-12>
+                        <button class="btn btn-block bg-success btn-lg">Submit</button>
+                    </div>
+                </form>
+
+            <!-- formular -->
+
+            </div>
+            <div class="col-sm-6 embed-responsive embed-responsive-16by9"  style=" margin-top: 5vw;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.887633915979!2d26.097499614910312!3d44.43546710951275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff472f47f047%3A0x493984726f0235f9!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83%20-%20Universitatea%20din%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1578217548048!5m2!1sro!2sro" width="100%" height="375" frameborder="0"  allowfullscreen=""></iframe>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--end of contact  section-->
+
+
+
+<% include partials/footer %>

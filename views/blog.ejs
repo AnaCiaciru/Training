@@ -1,0 +1,98 @@
+<% include partials/header %>
+
+<br><br><br>
+
+<!-- Page Content -->
+<div class="container">
+    <!-- onchange="loadFile(event)" -->
+    <div class="row" id="row">
+
+        <%  var i;
+            var  n = posts.length;
+            var post;
+
+        if (user) { %>
+            <div class="col-md-8">
+                <h1>Fa o postare!</h1>
+
+                <form action="/newpost" method="post">
+                    <div>
+                        <label>Titlul postarii:</label>
+                        <input type="text" name="titlu" id="titlu"/><br/>
+                    </div>
+                    <div>
+                        <label>Descriere:</label>
+                        <input type="text" name="descriere" id="descriere"/><br/>
+                    </div>
+                    <div>
+                        <label>Link la imagine:</label>
+                        <input type="text" name="imagine" id="imagine"/>
+                    </div>
+                    <div>
+                        <button> POST </button>
+                    </div>
+                </form>
+
+                <br><br>
+
+                <%
+                    for(i = n-1; i >= 0; i--){
+                        post = posts[i];
+                %>
+                <div class="card md-8" id="cont">
+                    <div class="card my-8">
+                        <div >
+                            <div  >
+                                <h2 style="font-family: 'Glyphicons Halflings'; font-size: 5vw;"><%= post.titlu%></h2>
+                            </div>
+
+                            <a href="/post/<%= i %>" ><img  id="output" src="<%= post.imagine %>" style="width: 80vw; height: 40vw; border-radius: 2vw;"> </a>
+
+                            <div >
+                                <p> Posted on <%= post.date%> </p>
+                            </div>
+
+                            </div>
+                        </div>
+                    </div><br><br>
+                <% } %>
+
+            </div>
+        <% } else { %>
+
+                <div >
+                    <h1><< Autentifica-te <a href="/login" >aici </a> ptr a putea face o postare! >></h1>
+                </div>
+
+                <br><br>
+
+                <%
+                for(i = n-1; i >= 0; i--){
+                    post = posts[i];
+                %>
+                <div class="card md-8" id="cont" style="margin: 4vw;">
+                    <div class="card my-8">
+                        <div >
+                            <div >
+                                <h2 style="font-family: 'Glyphicons Halflings'; font-size: 5vw;"><%= post.titlu%></h2>
+                            </div>
+
+                            <a href="/post/<%= i %>" ><img  id="output" src="<%= post.imagine %>" style="width: 80vw; height: 40vw; border-radius: 2vw;"> </a>
+
+                            <div >
+                                <p> Posted on <%= post.date%> </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div><br><br>
+                <% } %>
+
+
+                <% } %>
+
+    </div>
+</div>
+<!-- /.container -->
+
+<% include partials/footer %>
