@@ -10,10 +10,7 @@ slider.oninput = function(){
 function update(num){
 
     var x = String( Number(slider.value) + num);
-/*
-    var color = 'linear-gradient(90deg, rgb(117,252,117)' + y + '%, rgb(214,214,214)' + y + '%)';
-    slider.style.background = color;
-  */
+
     slider.value = x;
     output.innerHTML = slider.value;
 }
@@ -21,9 +18,6 @@ function update(num){
 slider.addEventListener("mousemove", function(){
     var x = slider.value;
     var y = String( Number(slider.value) - 2009 + 10 );
-    /*var color = 'linear-gradient(90deg, rgb(117,252,117)' + y + '%, rgb(214,214,214)' + y + '%)';
-    slider.style.background = color;
-     */
 
     var a = Number(slider.value) %2009 + 1 ;
     document.getElementById('image').src='/images/anim'+ a +'.png';

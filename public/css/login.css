@@ -1,0 +1,49 @@
+body{
+  background: url('../images/bg.png') fixed center;
+}
+
+.login_class {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+  margin: 10vh 20vw;
+  background-color: white;
+}
+
+input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.submit {
+  background-color: #0056b3;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.modal {
+  background-color: #fefefe;
+  margin: 5% auto 5% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 70%; /* Could be more or less, depending on screen size */
+}
+
+#captcha{
+  background-color: #b8daff;
+  height: 5vh;
+}
+
+ul#list li{
+  display: inline;
+  padding: 5%;
+  text-align: center;
+}

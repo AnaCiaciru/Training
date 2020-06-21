@@ -9,16 +9,26 @@ body {
 }
 
 .nav {
-  height: 50px;
+  /*height: 50px;*/
+  /*width: 100%;*/
+  /*background-color: #000000;*/
+  /*position: relative;*/
+  background: url('../images/bg.png');
+  text-align: center;
   width: 100%;
-  background-color: #000000;
+  height: auto;
+  background-size: cover;
+  background-attachment: fixed;
   position: relative;
+  overflow: hidden;
+  border-radius: 0 0 85% 85% / 30%;
 }
 
 
 .nav-title{
-  background-color: #16B0E6;
+  /*background-color: #16B0E6;*/
   font-family: Papyrus;
+  float: left;
 }
 
 .nav > .nav-header {

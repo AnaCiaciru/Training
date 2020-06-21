@@ -1,22 +1,100 @@
-<% include partials/header %>
-<br><br><br><br>
-<form action="/login" method="post">
-	<div>
-	<label>Username:</label>
-	<input type="text" name="username"/><br/>
-	</div>
-	<div>
-	<label>Password:</label>
-	<input type="password" name="password"/>
-	</div>
-	<div>
-	<input type="submit" value="Submit"/>
-	</div>
-</form>
+<html>
+<head>
+    <link type="text/css" href="/css/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="modal">
+    <form action="/login" method="post" class="login_class">
+        <div class="center-block">
+            <div>
+                <label>Username:</label>
+                <label>
+                    <input type="text" name="username"/>
+                </label><br/>
+            </div>
+            <div>
+                <label>Password:</label>
+                <label>
+                    <input type="password" name="password"/>
+                </label>
+            </div>
+            <div>
+                <label>Captcha</label>
+                <div id="captcha">
+                    <ul id="list">
+                    </ul>
+                </div>
+                <label>
+                    <input type="text" name="captcha"/>
+                </label>
+            </div>
 
-<% include partials/footer %>
+            <div>
+                <input class="submit" type="submit" value="Submit"/>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
 
+<script>
+    // Fisher-Yates algorithm
+    function shuffle(a) {
+        let j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1)); // [(0,1)* (i+1)]
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
+    }
 
+    let arr = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j', 'k','l',
+        'm', 'n','o','p','q','r','s','t','u','v','w','x','y','z',"A", "B", "C", "D", "E", "F", "G", "H",
+        "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
+    shuffle(arr);
 
+    let size = 6;
+    let items = arr.slice(0, size);
 
+    function getRandomColor() {
+        let letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    function getRandomSize() {
+        let size = [20, 30, 10, 20, 36, 17];
+        shuffle(size);
+        return size[0];
+    }
+
+    function getRandomFont(){
+        let arr = ["Optima", "sans-serif", "Brush Script MT", "Chalkduster", "DejaVu Sans Mono"];
+        shuffle(arr);
+        return arr[0];
+    }
+
+    function setRandomColor() {
+
+        for(let i = 0; i < 6; i++){
+            let par = document.createElement("li");
+            let txt = document.createTextNode(items[i]);
+            par.appendChild(txt);
+            par.style.color = getRandomColor();
+            par.style.fontSize = getRandomSize().toString() + "px";
+            par.style.fontFamily = getRandomFont();
+            document.getElementById("list").appendChild(par);
+        }
+
+    }
+
+    setRandomColor();
+
+</script>

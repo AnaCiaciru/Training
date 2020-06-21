@@ -1,14 +1,101 @@
 <% include partials/header %>
 
 <br><br><br><br>
+<div id="eroare"></div>
 
-<p>
-ID: <%= user.id %><br/>
-Username: <%= user.username %><br/>
-Name: <%= user.displayName %><br/>
-<% if (user.emails) { %>
-Email: <%= user.emails[0].value %><br/>
-<% } %>
+<p id="text" style="font-size: 60px">
+    ID: <%= user.id %><br/>
+    Username: <%= user.username %><br/>
+    Name: <%= user.displayName %><br/>
+    <% if (user.emails) { %>
+        Email: <%= user.emails[0].value %><br/>
+    <% } %>
 </p>
+
+<p>Alege dimensiunea textului:</p>
+<form>
+    <select id="mySelect">
+        <option>Small</option>
+        <option>Medium</option>
+        <option>Large</option>
+    </select>
+    <br><br>
+    <input onclick="modify()" type="submit" value="Submit">
+</form>
+
+<br>
+
+<button onclick="deleteSize()">Restore</button>
+
+<form>
+    <label>Introdu o culoare de background!</label>
+    <input type="text" id="back"/>
+    <button type="button" onclick="seteazaBg()" > save </button>
+</form>
+
+
+<script>
+    let size = window.localStorage.getItem("size");
+    document.getElementById("text").style.fontSize = size;
+
+    function isColor(strColor){
+        var s = new Option().style;
+        s.color = strColor;
+        return s.color == strColor;
+    }
+
+    function seteazaBg() {
+        let bgColor = document.getElementById("back").value;
+        if(isColor(bgColor)){
+            document.body.style.backgroundColor = bgColor;
+        }
+        else
+        {
+            let par = document.createElement("p");
+            let txt = document.createTextNode("Culoare invalida!");
+            par.appendChild(txt);
+            document.getElementById("eroare").appendChild(par);
+        }
+
+    }
+
+    function modifSizeSmall(){
+        window.localStorage.setItem("size", "10px");
+        document.getElementById("text").style.fontSize = "10px";
+    }
+
+    function modifSizeMedium(){
+        window.localStorage.setItem("size", "20px");
+        document.getElementById("text").style.fontSize = "20px";
+    }
+
+    function modifSizeLarge(){
+        window.localStorage.setItem("size", "30px");
+        document.getElementById("text").style.fontSize = "30px";
+    }
+    function deleteSize() {
+        window.localStorage.clear();
+        window.localStorage.setItem("size", "60px");
+        document.getElementById("text").style.fontSize = "60px";
+    }
+
+    function modify(){
+        let x = document.getElementById("mySelect");
+        let i = x.selectedIndex;
+        let option = x.options[i].text;
+
+        if(option.toString() === "Small"){
+            modifSizeSmall();
+        }
+        if(option.toString() === "Medium"){
+            modifSizeMedium();
+        }
+        if(option.toString() === "Large"){
+            modifSizeLarge();
+        }
+    }
+
+
+</script>
 
 <% include partials/footer %>

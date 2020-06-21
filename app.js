@@ -4,7 +4,6 @@ var Strategy = require('passport-local').Strategy;
 var db = require('./db');
 
 // Configure the local strategy for use by Passport.
-//
 // The local strategy require a `verify` function which receives the credentials
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
@@ -14,7 +13,7 @@ passport.use(new Strategy(
         db.users.findByUsername(username, function(err, user) {
             if (err) { return cb(err); }
             if (!user) { return cb(null, false); }
-            if (user.password != password) { return cb(null, false); }
+            if (user.password !== password) { return cb(null, false); }
             return cb(null, user);
         });
     }));
@@ -60,28 +59,38 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Define routes.
+/**---------------------------------------------INDEX----------------------------------------------------**/
 app.get('/',
     function(req, res) {
+
         res.render('home', { user: req.user });
     });
 
+/**---------------------------------------------HOME----------------------------------------------------**/
 app.get('/home',
     function(req, res) {
         res.render('home', { user: req.user });
     });
 
+/**---------------------------------------------ABOUT----------------------------------------------------**/
 app.get('/about',
     function(req, res) {
         res.render('about', { user: req.user });
     });
 
+/**---------------------------------------------TRAININGS----------------------------------------------------**/
+app.get('/trainings',
+    function(req, res) {
+        res.render('trainings', { user: req.user });
+    });
+
+/**---------------------------------------------PARCURS----------------------------------------------------**/
 app.get('/parcurs',
     function(req, res) {
         res.render('parcurs', { user: req.user });
     });
 
-
+/**---------------------------------------------LOG IN----------------------------------------------------**/
 app.get('/login',
     function(req, res){
         res.render('login', { user: req.user });
@@ -90,13 +99,13 @@ app.get('/login',
 app.post('/login',
     passport.authenticate('local', { failureRedirect: '/login' }),
     function(req, res) {
-        res.redirect('/');
+        res.redirect('/blog');
     });
 
 app.get('/logout',
     function(req, res){
         req.logout();
-        res.redirect('/');
+        res.redirect('/home');
     });
 
 app.get('/profile',
@@ -105,7 +114,7 @@ app.get('/profile',
         res.render('profile', { user: req.user });
     });
 
-//for blog
+/**---------------------------------------------BLOG----------------------------------------------------**/
 
 var posts = [
     { titlu: 'Primul Training tinut de mine', descriere: 'In teambuildingul celor de la facultatea de litere. A fost un training de motivare si incredere cu putin teamwork.', date: 'Wed Jan 15 2020', imagine : '/images/primul.jpg'},
@@ -137,7 +146,7 @@ app.get("/post/:index", function(req, res){
    res.render('post', {user: req.user, post: post }  );
 });
 
-/// planificare consultanta
+/**--------------------------------------PLANIFICARE CONSULTANTA----------------------------------------------------**/
 
 var consultatii = [
     {nume: "Popa", pren: "Ion", start: "17:00", final: "21:00"},
@@ -161,10 +170,10 @@ app.post("/newRequest", function(req, res){
     var date = req.body.day;
 
     var i, ok = 1;
-    for(i = 0; i < nedisp.length && ok == 1; i++)
-        if(nedisp.start == start && nedisp.final == final)
+    for(i = 0; i < nedisp.length && ok === 1; i++)
+        if(nedisp.start === start && nedisp.final === final)
                 ok = 0;
-    if(ok == 1) {
+    if(ok === 1) {
         var x = {date: date, start: start, final: final};
         nedisp.push(x);
         console.log(nedisp);
@@ -173,6 +182,8 @@ app.post("/newRequest", function(req, res){
     res.redirect("/planificare/?eroare");
 });
 
+
+/**---------------------------------------------SERVER----------------------------------------------------**/
 
 app.listen(3000, "127.0.0.1", function(){
     console.log("Server is listening!!!");

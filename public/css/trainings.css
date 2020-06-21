@@ -1,0 +1,13 @@
+.unmarked{
+    border: solid #0056b3 3px;
+    margin: 5%;
+    padding: 2%;
+    background-color: #9fcdff;
+}
+
+.marked{
+    border: solid #28a745 3px;
+    margin: 5%;
+    padding: 2%;
+    background-color: #b1dfbb;
+}
